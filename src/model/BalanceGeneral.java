@@ -22,5 +22,10 @@ public class BalanceGeneral {
 		this.reserva = null;
 		this.utilidad = null;
 	}
+	
+
+
+
+	
 
 }

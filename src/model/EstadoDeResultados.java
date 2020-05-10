@@ -1,8 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-
-import Exceptions.*;
+import exceptions.NotFoundIngresosGastos;
 
 public class EstadoDeResultados {
 	
@@ -21,7 +20,7 @@ public class EstadoDeResultados {
 	private Cuenta utilidad;
 	
 
-	private int calculateUtility() throws notFoundIngresosGastos {
+	public int calculateUtility() throws NotFoundIngresosGastos {
 		int resultado = 0;
 		
 		int ingresosCalculo = 0;
@@ -41,13 +40,13 @@ public class EstadoDeResultados {
 		
 		
 		}else {
-			throw new notFoundIngresosGastos("");
+			throw new NotFoundIngresosGastos("");
 		}
 		
 		return resultado;
 	}
 	
-	private int calculateG(int utilidad,int ingresos) {
+	public int calculateG(int utilidad,int ingresos) {
 		int resultado = 0;
 		
 		

@@ -1,8 +1,8 @@
-package Exceptions;
+package exceptions;
 
-public class notFoundIngresosGastos extends Exception {
+public class NotFoundIngresosGastos extends Exception {
 
-	public notFoundIngresosGastos(String msj) {
+	public NotFoundIngresosGastos(String msj) {
 		super(msj);
 	}
 	

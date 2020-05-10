@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import model.AdministradorCuentas;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+
 
 public class Main extends Application {
 	private static AdministradorCuentas ac;

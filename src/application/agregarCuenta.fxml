@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="428.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AgregarCuentaController">
+   <top>
+      <Pane prefHeight="73.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="162.0" layoutY="27.0" text="Agregar Cuenta">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="codigo" layoutX="171.0" layoutY="25.0" />
+            <Label layoutX="108.0" layoutY="29.0" text="Codigo: " />
+            <TextField fx:id="nombre" layoutX="171.0" layoutY="64.0" />
+            <Label layoutX="96.0" layoutY="68.0" prefHeight="17.0" prefWidth="66.0" text="  Nombre:" />
+            <ChoiceBox fx:id="tipos" layoutX="170.0" layoutY="139.0" prefWidth="150.0" />
+            <Label layoutX="113.0" layoutY="143.0" prefHeight="17.0" prefWidth="35.0" text="  Tipo:" />
+            <TextField fx:id="cantidad" layoutX="171.0" layoutY="102.0" />
+            <Label layoutX="115.0" layoutY="106.0" prefHeight="17.0" prefWidth="39.0" text=" Valor:" />
+            <Button fx:id="volver" layoutX="46.0" layoutY="275.0" mnemonicParsing="false" text="Volver" />
+            <Button fx:id="guardar" layoutX="109.0" layoutY="275.0" mnemonicParsing="false" text="Añadir" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

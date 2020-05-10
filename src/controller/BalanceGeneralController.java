@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,18 +38,9 @@ public class BalanceGeneralController implements Initializable{
 	private Button agregarCuenta;
 	
 	@FXML
-	private Label valorActivosCorrientes;
+	private Button resultado;
 	
-	@FXML
-	private Label valorPasivosCorrientes;
-	
-	@FXML
-	private Label valorActivosNoCorrientes;
-	
-	@FXML
-	private Label valorPasivosNocorrientes;
-	
-	
+
 	
 	@SuppressWarnings("unchecked")
 	void init() {
@@ -56,8 +48,8 @@ public class BalanceGeneralController implements Initializable{
 		toShow.setMaxWidth(400);
 		toShow.setMaxHeight(400);
 		
-		TableColumn<Cuenta, String> colCode = new TableColumn<>("Codigo");
-		colCode.setCellValueFactory(new PropertyValueFactory<Cuenta, String>("codigo_c"));
+		TableColumn<Cuenta, Integer> colCode = new TableColumn<>("Codigo");
+		colCode.setCellValueFactory(new PropertyValueFactory<Cuenta, Integer>("codigo_c"));
 		colCode.setPrefWidth(toShow.getMaxWidth()/4);
 		
 		TableColumn<Cuenta, String> colName = new TableColumn<>("Cuenta");
@@ -65,17 +57,21 @@ public class BalanceGeneralController implements Initializable{
 		colName.setPrefWidth(toShow.getMaxWidth()/4);
 		
 		TableColumn<Cuenta, String> colTipo = new TableColumn<>("Tipo");
-		colTipo.setCellValueFactory(new PropertyValueFactory<Cuenta, String>("tipo_c"));
+		colTipo.setCellValueFactory(new PropertyValueFactory<Cuenta, String>("estado_m"));
 		colTipo.setPrefWidth(toShow.getMaxWidth()/4);
 		
 		TableColumn<Cuenta, Integer> colVal = new TableColumn<>("Valor");
 		colVal.setCellValueFactory(new PropertyValueFactory<Cuenta, Integer>("valor_c"));
 		colVal.setPrefWidth(toShow.getMaxWidth()/4);
-		toShow.getColumns().addAll(colCode, colName, colTipo,colVal);
+		toShow.getColumns().addAll(colCode, colName, colVal,colTipo);
 		panel.setCenter(toShow);
 		
+		listA = FXCollections.observableArrayList(Main.getAc().getCuentas());
+		
 		toShow.setItems(listA);
-		panel.setCenter(toShow);
+		
+		
+		
 		
 		agregarCuenta.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -96,14 +92,28 @@ public class BalanceGeneralController implements Initializable{
 
 			}
 		});
+		
+		resultado.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent t) {
+
+				Parent root;
+				try {
+					root = FXMLLoader.load(getClass().getResource("/application/resultados.fxml"));
+					Scene scene = new Scene(root);
+					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.centerOnScreen();
+					stage.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
 
 	}
-
-
-
-	
-	
-	
 
 
 	@Override

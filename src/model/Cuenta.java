@@ -5,24 +5,20 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Cuenta {
 	
-	public final static String CORRIENTE = "Corriente";
-	public final static String NO_CORRIENTE = "No corriente";
-	public final static String PATRIMONIO ="Patrimonio";
-	public final static String GASTO = "Gasto";
-	public final static String INGRESO = "Ingreso";
+	
 	
 	private final SimpleStringProperty nombre_c;
-	private final SimpleStringProperty codigo_c;
-	private final SimpleStringProperty tipo_c;
-	private SimpleIntegerProperty valor_c;
+	private final SimpleIntegerProperty codigo_c;
+	private final SimpleStringProperty estado_m;
+	private final SimpleIntegerProperty valor_c;
 	
 	
 
-	public Cuenta(String nombre_c, String codigo_c, String tipo_c, int valor_c) {
+	public Cuenta(String nombre_c, int codigo_c, String estado_m, int valor_c) {
 		
 		this.nombre_c = new SimpleStringProperty(nombre_c);
-		this.codigo_c = new SimpleStringProperty(codigo_c);
-		this.tipo_c = new SimpleStringProperty(tipo_c);
+		this.codigo_c = new SimpleIntegerProperty(codigo_c);
+		this.estado_m = new SimpleStringProperty(estado_m);
 		this.valor_c = new SimpleIntegerProperty(valor_c);
 	}
 
@@ -34,28 +30,28 @@ public class Cuenta {
 		this.nombre_c.set(nombre);
 	}
 
-	public String getCodigo_c() {
+	public int getCodigo_c() {
 		return codigo_c.get();
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo_c(int codigo) {
 		this.codigo_c.set(codigo);
 	}
 	
-	
-	public void getTipo_c() {
-		this.tipo_c.get();
+
+	public String getEstado_m() {
+		return this.estado_m.get();
 	}
 	
-	public void setTipo_c(String tipo) {
-		this.tipo_c.set(tipo);
+	public void setTipo_m(String tipo) {
+		this.estado_m.set(tipo);
 	}
 
-	public int getValor() {
+	public int getValor_c() {
 		return valor_c.get();
 	}
 
-	public void setValor(int valor) {
+	public void setValor_c(int valor) {
 		this.valor_c.set(valor);
 	}
 	

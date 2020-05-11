@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
-import exceptions.EmptyFieldException;
+import Exceptions.EmptyFieldException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -86,6 +86,7 @@ public class AgregarCuentaController implements Initializable{
 				Parent root;
 				try {
 					root = FXMLLoader.load(getClass().getResource("/application/balance.fxml"));
+					root.getStylesheets().add("/application/application.css");
 					Scene scene = new Scene(root);
 					Stage stage = new Stage();
 					stage.setScene(scene);

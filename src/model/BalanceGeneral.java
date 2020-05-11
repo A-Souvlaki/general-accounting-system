@@ -14,7 +14,6 @@ public class BalanceGeneral {
 
 	private ArrayList<Cuenta> cuentasPatrimonio;
 
-	private Cuenta utilidad;
 
 	public BalanceGeneral() {
 
@@ -23,8 +22,6 @@ public class BalanceGeneral {
 		activosNoCorrientes = new ArrayList<Cuenta>();
 		pasivosNoCorrientes = new ArrayList<Cuenta>();
 		cuentasPatrimonio = new ArrayList<Cuenta>();
-
-		this.utilidad = null;
 
 	}
 

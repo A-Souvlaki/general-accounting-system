@@ -81,6 +81,7 @@ public class BalanceGeneralController implements Initializable{
 				Parent root;
 				try {
 					root = FXMLLoader.load(getClass().getResource("/application/agregarCuenta.fxml"));
+					root.getStylesheets().add("/application/application.css");
 					Scene scene = new Scene(root);
 					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
 					stage.setScene(scene);
@@ -101,6 +102,7 @@ public class BalanceGeneralController implements Initializable{
 				Parent root;
 				try {
 					root = FXMLLoader.load(getClass().getResource("/application/resultados.fxml"));
+					root.getStylesheets().add("/application/application.css");
 					Scene scene = new Scene(root);
 					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
 					stage.setScene(scene);

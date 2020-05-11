@@ -1,6 +1,11 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import application.Main;
 
 public class AdministradorCuentas {
 	
@@ -25,6 +30,29 @@ public class AdministradorCuentas {
 		bg = new BalanceGeneral();
 		er = new EstadoDeResultados();
 		cuentas = new ArrayList<Cuenta>();
+		readCounts();
+		
+	}
+	
+	void readCounts() {
+		
+		File file = new File("files\\Activos.txt");
+		if (file.exists()) {
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String linea;
+		        while((linea=br.readLine())!=null) {
+		        	String[] write = linea.split(",");
+		        	Cuenta cuenta = new Cuenta(write[0],Integer.parseInt(write[1]), write[2], Integer.parseInt(write[3]));
+		        	cuentas.add(cuenta);
+					actualizar();
+		        }
+				br.close();
+
+			} catch (IOException e) {
+				e.getStackTrace();
+			}
+		}
 		
 	}
 
@@ -43,29 +71,33 @@ public class AdministradorCuentas {
 	
 	public void añadirActivosCorrientes() {
 		for (int i = 0; i < cuentas.size(); i++) {
-			if (cuentas.get(i).getEstado_m().equals(ACORRIENTE));
+			if (cuentas.get(i).getEstado_m().equals(ACORRIENTE) == true) {
 				bg.getActivosCorrientes().add(cuentas.get(i));
+			}
 		}
 	}
 	
 	public void añadirActivosNoCorrientes() {
 		for (int i = 0; i < cuentas.size(); i++) {
-			if (cuentas.get(i).getEstado_m().equals(ANO_CORRIENTE));
+			if (cuentas.get(i).getEstado_m().equals(ANO_CORRIENTE)== true) {
 				bg.getActivosNoCorrientes().add(cuentas.get(i));
+			}
 		}
 	}
 	
 	public void añadirPasivosCorrientes() {
 		for (int i = 0; i < cuentas.size(); i++) {
-			if (cuentas.get(i).getEstado_m().equals(PCORRIENTE));
+			if (cuentas.get(i).getEstado_m().equals(PCORRIENTE)== true) {
 				bg.getPasivosCorrientes().add(cuentas.get(i));
+			}
 		}
 	}
 	
 	public void añadirPasivosNoCorrientes() {
 		for (int i = 0; i < cuentas.size(); i++) {
-			if (cuentas.get(i).getEstado_m().equals(PNO_CORRIENTE));
+			if (cuentas.get(i).getEstado_m().equals(PNO_CORRIENTE)== true) {
 				bg.getPasivosNoCorrientes().add(cuentas.get(i));
+			}
 		}
 	}
 	

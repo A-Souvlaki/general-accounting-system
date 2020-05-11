@@ -27,6 +27,9 @@ public class ResultadosController implements Initializable{
 	private Text sumaActivos;
 	
 	@FXML
+	private Text sumaPasivos;
+	
+	@FXML
 	private Text sumaPasivosPatrimonio;
 	
 	void init() {
@@ -63,11 +66,18 @@ public class ResultadosController implements Initializable{
 			pasivosNC.setFill(Color.DARKSLATEGREY);
 		}
 		
-		if (Main.getAc().getBg().sumaPasivos() != 0) {
-			pasivosNC.setText("" +Main.getAc().getBg().sumaPasivos());
+		if (Main.getAc().getBg().sumaActivos() != 0) {
+			sumaActivos.setText("" +Main.getAc().getBg().sumaActivos());
 		}else {
-			pasivosNC.setText(""+0);
-			pasivosNC.setFill(Color.DARKSLATEGREY);
+			sumaActivos.setText(""+0);
+			sumaActivos.setFill(Color.DARKSLATEGREY);
+		}
+		
+		if (Main.getAc().getBg().sumaPasivos() != 0) {
+			sumaPasivos.setText("" +Main.getAc().getBg().sumaPasivos());
+		}else {
+			sumaPasivos.setText(""+0);
+			sumaPasivos.setFill(Color.DARKSLATEGREY);
 		}
 		
 		

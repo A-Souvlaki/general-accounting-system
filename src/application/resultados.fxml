@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ResultadosController">
    <top>
       <Pane prefHeight="62.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -43,9 +42,9 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Text>
-            <Text layoutX="289.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="pasivosNC" layoutX="289.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text layoutX="290.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL:" />
-            <Text fx:id="pasivosNC" layoutX="336.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="sumaPasivos" layoutX="336.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text layoutX="290.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUMA PASIVOS Y PATRIMONIO">
                <font>
                   <Font name="System Italic" size="12.0" />

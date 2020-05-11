@@ -5,7 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
+
 import Exceptions.EmptyFieldException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.Node;
 import model.Cuenta;
 
 public class AgregarCuentaController implements Initializable{
@@ -73,6 +76,18 @@ public class AgregarCuentaController implements Initializable{
 					alert.setHeaderText(null);
 					alert.setContentText("Su registro ha sido guardado");
 					alert.showAndWait();
+					
+					Parent root;
+					try {
+						root = FXMLLoader.load(getClass().getResource("/application/balance.fxml"));
+						Scene scene = new Scene(root);
+						Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+						stage.setScene(scene);
+						stage.centerOnScreen();
+						stage.show();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 
 			}
@@ -88,7 +103,7 @@ public class AgregarCuentaController implements Initializable{
 					root = FXMLLoader.load(getClass().getResource("/application/balance.fxml"));
 					root.getStylesheets().add("/application/application.css");
 					Scene scene = new Scene(root);
-					Stage stage = new Stage();
+					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
 					stage.setScene(scene);
 					stage.centerOnScreen();
 					stage.show();
@@ -98,8 +113,6 @@ public class AgregarCuentaController implements Initializable{
 
 			}
 		});
-
-
 		
 	}
 	
@@ -130,13 +143,13 @@ public class AgregarCuentaController implements Initializable{
 	void createBox() {
 		listA.remove(listA);
 		listA.addAll(ACORRIENTE,ANO_CORRIENTE,PCORRIENTE,PNO_CORRIENTE,PATRIMONIO,INGRESO,GASTO,COSTO);
+		tipos.getItems().addAll(listA);
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		createBox();
 		init();
-		
 	}
 
 

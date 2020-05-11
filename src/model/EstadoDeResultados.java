@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import Exceptions.NotFoundIngresosGastos;
 
 public class EstadoDeResultados {
-	
+
 	private ArrayList<Cuenta> ingresosOperacionales;
 	
 	private ArrayList<Cuenta> ingresosNoOperacionales;
@@ -13,6 +13,7 @@ public class EstadoDeResultados {
 	
 	private ArrayList<Cuenta> gastosNoOperacionales;
 	
+
 	private Cuenta utilidadOperativa;
 	
 	private Cuenta utilidadBruta;

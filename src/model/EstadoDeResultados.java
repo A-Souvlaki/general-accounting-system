@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import exceptions.NotFoundIngresosGastos;
+import Exceptions.NotFoundIngresosGastos;
 
 public class EstadoDeResultados {
 

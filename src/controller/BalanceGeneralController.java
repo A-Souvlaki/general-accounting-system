@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -29,8 +30,13 @@ public class BalanceGeneralController implements Initializable{
 	
 	ObservableList<Cuenta> listA = FXCollections.observableArrayList();
 	
+	ObservableList<String> listB = FXCollections.observableArrayList();
+	
 	private TableView<Cuenta> toShow;
 	
+	@FXML
+	private ChoiceBox<String> documentos;
+ 	
 	@FXML
 	private BorderPane panel;
 	
@@ -81,7 +87,6 @@ public class BalanceGeneralController implements Initializable{
 				Parent root;
 				try {
 					root = FXMLLoader.load(getClass().getResource("/application/agregarCuenta.fxml"));
-					root.getStylesheets().add("/application/application.css");
 					Scene scene = new Scene(root);
 					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
 					stage.setScene(scene);
@@ -102,7 +107,6 @@ public class BalanceGeneralController implements Initializable{
 				Parent root;
 				try {
 					root = FXMLLoader.load(getClass().getResource("/application/resultados.fxml"));
-					root.getStylesheets().add("/application/application.css");
 					Scene scene = new Scene(root);
 					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
 					stage.setScene(scene);
@@ -116,7 +120,13 @@ public class BalanceGeneralController implements Initializable{
 		});
 
 	}
-
+	
+	@SuppressWarnings("unlikely-arg-type")
+	void createBox() {
+		listB.remove(listB);
+		listB.addAll("Factura de Compra","Factura de Venta","Recibos de Caja","Comprobante de Egreso");
+		documentos.getItems().addAll(listB);
+	}	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

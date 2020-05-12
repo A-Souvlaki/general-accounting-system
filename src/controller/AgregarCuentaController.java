@@ -5,9 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
-
-import Exceptions.EmptyFieldException;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,8 +16,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -38,6 +39,13 @@ public class AgregarCuentaController implements Initializable{
 	public final static String COSTO = "Costo de Ventas";
 	
 	ObservableList<String> listA = FXCollections.observableArrayList();
+	
+	ObservableList<Cuenta> listB = FXCollections.observableArrayList();
+	
+	private TableView<Cuenta> toShow;
+	
+	@FXML
+	private BorderPane panel;
 	
 	@FXML
 	private TextField codigo;
@@ -57,7 +65,38 @@ public class AgregarCuentaController implements Initializable{
 	@FXML
 	private Button guardar;
 	
+	@FXML
+	private Button table;
+	
+	@SuppressWarnings("unchecked")
 	void init(){
+		//
+		toShow = new TableView<Cuenta>();
+		toShow.setMaxWidth(400);
+		toShow.setMaxHeight(300);
+		
+		TableColumn<Cuenta, Integer> colCode = new TableColumn<>("Codigo");
+		colCode.setCellValueFactory(new PropertyValueFactory<Cuenta, Integer>("codigo_c"));
+		colCode.setPrefWidth(toShow.getMaxWidth()/4);
+		
+		TableColumn<Cuenta, String> colName = new TableColumn<>("Cuenta");
+		colName.setCellValueFactory(new PropertyValueFactory<Cuenta, String>("nombre_c"));
+		colName.setPrefWidth(toShow.getMaxWidth()/4);
+		
+		TableColumn<Cuenta, String> colTipo = new TableColumn<>("Tipo");
+		colTipo.setCellValueFactory(new PropertyValueFactory<Cuenta, String>("estado_m"));
+		colTipo.setPrefWidth(toShow.getMaxWidth()/4);
+		
+		TableColumn<Cuenta, Integer> colVal = new TableColumn<>("Valor");
+		colVal.setCellValueFactory(new PropertyValueFactory<Cuenta, Integer>("valor_c"));
+		colVal.setPrefWidth(toShow.getMaxWidth()/4);
+		toShow.getColumns().addAll(colCode, colName, colVal,colTipo);
+		panel.setCenter(toShow);
+		
+		listB = FXCollections.observableArrayList(Main.getAc().getCuentasP());
+		
+		toShow.setItems(listB);
+		
 		
 		guardar.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -101,7 +140,6 @@ public class AgregarCuentaController implements Initializable{
 				Parent root;
 				try {
 					root = FXMLLoader.load(getClass().getResource("/application/balance.fxml"));
-					root.getStylesheets().add("/application/application.css");
 					Scene scene = new Scene(root);
 					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
 					stage.setScene(scene);
@@ -109,6 +147,36 @@ public class AgregarCuentaController implements Initializable{
 					stage.show();
 				} catch (IOException e) {
 					e.printStackTrace();
+				}
+
+			}
+		});
+		
+		
+		table.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent t) {
+				
+				if (toShow.getSelectionModel().isEmpty()) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText(null);
+					alert.setContentText("Seleccione un elemento de la tabla");
+					alert.showAndWait();
+				} else {
+					
+					String nombre_m = listB.get(toShow.getSelectionModel().getSelectedIndex()).getNombre_c();
+					int codigo_m = listB.get(toShow.getSelectionModel().getSelectedIndex()).getCodigo_c();
+					String estado_m = listB.get(toShow.getSelectionModel().getSelectedIndex()).getEstado_m();
+					
+					tipos.setValue(estado_m);
+					nombre.setText(nombre_m);
+					codigo.setText(String.valueOf(codigo_m));
+					
+					nombre.setEditable(false);
+					codigo.setEditable(false);
+					tipos.setVisible(false);
+					
 				}
 
 			}

@@ -8,33 +8,36 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="428.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AgregarCuentaController">
+<BorderPane fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AgregarCuentaController">
    <top>
       <Pane prefHeight="73.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="162.0" layoutY="27.0" text="Agregar Cuenta">
+            <Label layoutX="325.0" layoutY="27.0" text="Agregar Cuenta">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <Button fx:id="volver" layoutX="9.0" layoutY="24.0" mnemonicParsing="false" text="Volver" />
          </children>
       </Pane>
    </top>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="442.0" prefWidth="615.0" BorderPane.alignment="CENTER" />
+   </center>
+   <left>
+      <Pane prefHeight="427.0" prefWidth="236.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="codigo" layoutX="171.0" layoutY="25.0" />
-            <Label layoutX="108.0" layoutY="29.0" text="Codigo: " />
-            <TextField fx:id="nombre" layoutX="171.0" layoutY="64.0" />
-            <Label layoutX="96.0" layoutY="68.0" prefHeight="17.0" prefWidth="66.0" text="  Nombre:" />
-            <ChoiceBox fx:id="tipos" layoutX="170.0" layoutY="139.0" prefWidth="150.0" />
-            <Label layoutX="113.0" layoutY="143.0" prefHeight="17.0" prefWidth="35.0" text="  Tipo:" />
-            <TextField fx:id="cantidad" layoutX="171.0" layoutY="102.0" />
-            <Label layoutX="115.0" layoutY="106.0" prefHeight="17.0" prefWidth="39.0" text=" Valor:" />
-            <Button fx:id="volver" layoutX="46.0" layoutY="275.0" mnemonicParsing="false" text="Volver" />
-            <Button fx:id="guardar" layoutX="109.0" layoutY="275.0" mnemonicParsing="false" text="Añadir" />
+            <Label layoutX="14.0" layoutY="38.0" text="Codigo: " />
+            <TextField fx:id="codigo" layoutX="68.0" layoutY="34.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="3.0" layoutY="72.0" prefHeight="17.0" prefWidth="66.0" text="  Nombre:" />
+            <TextField fx:id="nombre" layoutX="68.0" layoutY="68.0" />
+            <Label layoutX="17.0" layoutY="103.0" prefHeight="17.0" prefWidth="39.0" text=" Valor:" />
+            <TextField fx:id="cantidad" layoutX="68.0" layoutY="99.0" />
+            <Label layoutX="19.0" layoutY="132.0" prefHeight="17.0" prefWidth="35.0" text="  Tipo:" />
+            <ChoiceBox fx:id="tipos" layoutX="68.0" layoutY="128.0" prefWidth="150.0" />
+            <Button fx:id="guardar" layoutX="19.0" layoutY="362.0" mnemonicParsing="false" text="Añadir" />
+            <Button fx:id="table" layoutX="88.0" layoutY="362.0" mnemonicParsing="false" text="Agregar por tabla" />
          </children>
       </Pane>
-   </center>
+   </left>
 </BorderPane>

@@ -23,6 +23,8 @@ public class AdministradorCuentas {
 	
 	private EstadoDeResultados er;
 	
+	private ArrayList<Cuenta> cuentasPersistentes;
+	
 	private ArrayList<Cuenta> cuentas;
 	
 	
@@ -30,6 +32,7 @@ public class AdministradorCuentas {
 		bg = new BalanceGeneral();
 		er = new EstadoDeResultados();
 		cuentas = new ArrayList<Cuenta>();
+		cuentasPersistentes = new ArrayList<Cuenta>();
 		readCounts();
 		
 	}
@@ -44,7 +47,7 @@ public class AdministradorCuentas {
 		        while((linea=br.readLine())!=null) {
 		        	String[] write = linea.split(",");
 		        	Cuenta cuenta = new Cuenta(write[0],Integer.parseInt(write[1]), write[2], Integer.parseInt(write[3]));
-		        	cuentas.add(cuenta);
+		        	cuentasPersistentes.add(cuenta);
 					actualizar();
 		        }
 				br.close();
@@ -67,6 +70,10 @@ public class AdministradorCuentas {
 	
 	public ArrayList<Cuenta> getCuentas() {
 		return cuentas;
+	}
+	
+	public ArrayList<Cuenta> getCuentasP() {
+		return cuentasPersistentes;
 	}
 	
 	public void añadirActivosCorrientes() {

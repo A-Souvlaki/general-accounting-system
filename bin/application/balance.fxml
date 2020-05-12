@@ -25,7 +25,8 @@
          <children>
             <Button fx:id="agregarCuenta" layoutX="47.0" layoutY="34.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Agregar " />
             <Button fx:id="resultado" layoutX="134.0" layoutY="34.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Resultados" />
-            <ChoiceBox layoutX="231.0" layoutY="34.0" prefHeight="25.0" prefWidth="113.0" />
+            <ChoiceBox fx:id="documentos" layoutX="231.0" layoutY="34.0" prefHeight="25.0" prefWidth="113.0" />
+            <Button fx:id="ir" layoutX="352.0" layoutY="34.0" mnemonicParsing="false" text="Ir" />
          </children>
       </Pane>
    </bottom>

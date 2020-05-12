@@ -13,8 +13,6 @@ public class EstadoDeResultados {
 	
 	private ArrayList<Cuenta> gastosNoOperacionales;
 	
-
-	private Cuenta utilidadOperativa;
 	
 	private Cuenta utilidadBruta;
 	
@@ -23,8 +21,6 @@ public class EstadoDeResultados {
 	private Cuenta costosDeVentas;
 	
 	private Cuenta VentasNetas;
-	
-	
 	
 
 	public Cuenta getVentasNetas() {
@@ -67,14 +63,6 @@ public class EstadoDeResultados {
 		this.gastosNoOperacionales = gastosNoOperacionales;
 	}
 
-	public Cuenta getUtilidadOperativa() {
-		return utilidadOperativa;
-	}
-
-	public void setUtilidadOperativa(Cuenta utilidadOperativa) {
-		this.utilidadOperativa = utilidadOperativa;
-	}
-
 	public Cuenta getUtilidadBruta() {
 		return utilidadBruta;
 	}
@@ -98,51 +86,6 @@ public class EstadoDeResultados {
 	public void setCostosDeVentas(Cuenta costosDeVentas) {
 		this.costosDeVentas = costosDeVentas;
 	}
-
-	public int calculateUtility() throws NotFoundIngresosGastos {
-		int resultado = 0;
-		
-		int ingresosCalculo = 0;
-		int gastosCalculo = 0;
-		
-		boolean ingresosOp = ingresosOperacionales.isEmpty();
-		
-		boolean ingresosNOp = ingresosNoOperacionales.isEmpty();
-		
-		boolean GastosOp = gastosOperacionales.isEmpty();
-		
-		boolean GastosNOp = gastosNoOperacionales.isEmpty();
-		
-		
-		
-		if(ingresosOp && ingresosNOp && GastosOp && GastosNOp) {
-			
-			throw new NotFoundIngresosGastos("");
-			
-		}else {
-			
-		for(int i = 0; i < ingresosOperacionales.size();i++) {
-			ingresosCalculo += ingresosOperacionales.get(i).getValor_c();
-		}
-		
-		for(int o = 0; o < ingresosNoOperacionales.size();o++) {
-			ingresosCalculo += ingresosNoOperacionales.get(o).getValor_c();
-		}
-		
-		for(int k = 0; k < gastosOperacionales.size();k++) {
-			gastosCalculo += gastosOperacionales.get(k).getValor_c();
-		}
-		
-		for(int j = 0; j < gastosNoOperacionales.size();j++) {
-			gastosCalculo += gastosNoOperacionales.get(j).getValor_c();
-		}
-		
-		}
-		
-		resultado = ingresosCalculo - gastosCalculo;
-		
-		return resultado;
-	}
 	
 	public void setCostoDeVenta(Cuenta costosDeVentas){
 		
@@ -150,15 +93,18 @@ public class EstadoDeResultados {
 		
 	}
 
-	public void utilidadBruta() throws NotFoundIngresosGastos {
+	public Cuenta utilidadBruta() throws NotFoundIngresosGastos {
 		
-		int m = 0;
+		Cuenta objeto = null;
 		
-		if(ingresosOperacionales.isEmpty() && ingresosNoOperacionales.isEmpty()) {
+		if((ingresosOperacionales.isEmpty() && ingresosNoOperacionales.isEmpty() && gastosOperacionales.isEmpty()) && (getCostosDeVentas() == null )) {
 			
 			throw new NotFoundIngresosGastos("");
 			
 		}else {
+		int m = 0;
+		int resultados = 0;
+		int m2 = 0;
 		
 		for(int i = 0; i < ingresosOperacionales.size();i++) {
 			m += ingresosOperacionales.get(i).getValor_c();
@@ -168,8 +114,48 @@ public class EstadoDeResultados {
 			m += ingresosNoOperacionales.get(o).getValor_c();
 		}
 		
+		for(int u = 0; u < gastosOperacionales.size();u++) {
+			m2 += gastosOperacionales.get(u).getValor_c();
 		}
 		
+		int m1 = getCostosDeVentas().getValor_c();
+		
+		resultados = (m - m1)-m2;
+		
+		objeto = new Cuenta("Utilidad Bruta",3705,AdministradorCuentas.UTILIDAD,resultados);
+		
+		}
+		
+		return objeto;
+		
 	}
+	
+	public void calcularUtilidadNeta() throws NotFoundIngresosGastos {
+		Cuenta m = null;
+		Cuenta m1 = null;
+		int resultados = 0;
+		int ingreNop = 0;
+		int gastosNop = 0;
+		int utilidad = 0;
+		
+		m1 = utilidadBruta();
+		utilidad = m1.getValor_c();
+		
+		for(int i = 0; i < ingresosNoOperacionales.size();i++) {
+			ingreNop += ingresosNoOperacionales.get(i).getCodigo_c();
+		}
+		
+		for(int j = 0; j < gastosNoOperacionales.size();j++) {
+			gastosNop += gastosNoOperacionales.get(j).getCodigo_c();
+		}
+		
+		resultados = (utilidad+ingreNop)-gastosNop;
+		
+		m = new Cuenta("Utilidad Neta",3606,AdministradorCuentas.UTILIDAD,resultados);
+		
+		setUtilidadNeta(m);
+		
+	}
+	
 
 }

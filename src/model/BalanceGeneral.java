@@ -88,5 +88,61 @@ public class BalanceGeneral {
 	public int sumaPasivos() {
 		return sumaPasivosCorrientes() + sumaActivosNoCorrientes();
 	}
+	
+	public Cuenta buscarActivosC(int codigo, int valor) {
+		Cuenta cuenta = null; 
+		boolean close = true;
+		for (int i = 0; i < activosCorrientes.size()&&close; i++) {
+			if (activosCorrientes.get(i).getCodigo_c() == codigo) {
+				int oldValue = activosCorrientes.get(i).getValor_c();
+				int newValue = oldValue + valor;
+				activosCorrientes.get(i).setValor_c(newValue);
+				close = false;
+			}
+		}
+		return cuenta;
+	}
+	
+	public Cuenta buscarActivosNC(int codigo,int valor) {
+		Cuenta cuenta = null; 
+		boolean close = true;
+		for (int i = 0; i < activosNoCorrientes.size()&&close; i++) {
+			if (activosNoCorrientes.get(i).getCodigo_c() == codigo) {
+				int oldValue = activosNoCorrientes.get(i).getValor_c();
+				int newValue = oldValue + valor;
+				activosNoCorrientes.get(i).setValor_c(newValue);
+				close = false;
+			}
+		}
+		return cuenta;
+	}
+	
+	public Cuenta buscarPasivosC(int codigo,int valor) {
+		Cuenta cuenta = null; 
+		boolean close = true;
+		for (int i = 0; i < pasivosCorrientes.size()&&close; i++) {
+			if (pasivosCorrientes.get(i).getCodigo_c() == codigo) {
+				int oldValue = pasivosCorrientes.get(i).getValor_c();
+				int newValue = oldValue + valor;
+				pasivosCorrientes.get(i).setValor_c(newValue);
+				close = false;
+			}
+		}
+		return cuenta;
+	}
+	
+	public Cuenta buscarPasivosNC(int codigo,int valor) {
+		Cuenta cuenta = null; 
+		boolean close = true;
+		for (int i = 0; i < pasivosNoCorrientes.size()&&close; i++) {
+			if (pasivosNoCorrientes.get(i).getCodigo_c() == codigo) {
+				int oldValue = pasivosNoCorrientes.get(i).getValor_c();
+				int newValue = oldValue + valor;
+				pasivosNoCorrientes.get(i).setValor_c(newValue);
+				close = false;
+			}
+		}
+		return cuenta;
+	}
 
 }

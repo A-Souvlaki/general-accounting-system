@@ -17,7 +17,7 @@ public class AdministradorCuentas {
 	public final static String GASTO = "Gasto";
 	public final static String INGRESO = "Ingreso";
 	public final static String COSTO = "Costo de Ventas";
-	
+	public final static String UTILIDAD = "Utilidad";
 	
 	private BalanceGeneral bg;
 	
@@ -115,7 +115,11 @@ public class AdministradorCuentas {
 		añadirPasivosNoCorrientes();
 	}
 
-	
+	public void añadirCostoDeVentas(String nombre,int codigo,String estado_mc,int valor) {
+		
+//		Cuenta estadoDeCosto = new Cuenta();
+		
+	}
 	
 
 }

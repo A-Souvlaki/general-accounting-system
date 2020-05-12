@@ -15,12 +15,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -45,6 +47,9 @@ public class BalanceGeneralController implements Initializable{
 	
 	@FXML
 	private Button resultado;
+	
+	@FXML
+	private Button ir;
 	
 
 	
@@ -118,20 +123,50 @@ public class BalanceGeneralController implements Initializable{
 
 			}
 		});
+		
+		ir.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent t) {
+				
+
+				Parent root;
+				try {
+					if (documentos.getValue().equals("Factura de Compra")) {
+						root = FXMLLoader.load(getClass().getResource("/application/facturaCompra.fxml"));
+						Scene scene = new Scene(root);
+						Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+						stage.setScene(scene);
+						stage.centerOnScreen();
+						stage.show();
+					}
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Entrada no valida");
+					alert.setHeaderText(null);
+					alert.setContentText("Seleccione un valor");
+					alert.showAndWait();
+				}
+
+			}
+		});
 
 	}
 	
 	@SuppressWarnings("unlikely-arg-type")
 	void createBox() {
 		listB.remove(listB);
-		listB.addAll("Factura de Compra","Factura de Venta","Recibos de Caja","Comprobante de Egreso");
+		listB.addAll("Factura de Compra","Factura de Venta");
 		documentos.getItems().addAll(listB);
 	}	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		init();
-		
+		createBox();
 	}
 
 }

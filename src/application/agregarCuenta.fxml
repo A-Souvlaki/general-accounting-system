@@ -34,7 +34,7 @@
             <Label layoutX="17.0" layoutY="103.0" prefHeight="17.0" prefWidth="39.0" text=" Valor:" />
             <TextField fx:id="cantidad" layoutX="68.0" layoutY="99.0" />
             <Label layoutX="19.0" layoutY="132.0" prefHeight="17.0" prefWidth="35.0" text="  Tipo:" />
-            <ChoiceBox fx:id="tipos" layoutX="68.0" layoutY="128.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="tipos" layoutX="68.0" layoutY="128.0" prefHeight="11.0" prefWidth="150.0" />
             <Button fx:id="guardar" layoutX="19.0" layoutY="362.0" mnemonicParsing="false" text="Añadir" />
             <Button fx:id="table" layoutX="88.0" layoutY="362.0" mnemonicParsing="false" text="Agregar por tabla" />
          </children>

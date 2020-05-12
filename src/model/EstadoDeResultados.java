@@ -13,8 +13,6 @@ public class EstadoDeResultados {
 	
 	private ArrayList<Cuenta> gastosNoOperacionales;
 	
-
-	private Cuenta utilidadOperativa;
 	
 	private Cuenta utilidadBruta;
 	
@@ -65,14 +63,6 @@ public class EstadoDeResultados {
 
 	public void setGastosNoOperacionales(ArrayList<Cuenta> gastosNoOperacionales) {
 		this.gastosNoOperacionales = gastosNoOperacionales;
-	}
-
-	public Cuenta getUtilidadOperativa() {
-		return utilidadOperativa;
-	}
-
-	public void setUtilidadOperativa(Cuenta utilidadOperativa) {
-		this.utilidadOperativa = utilidadOperativa;
 	}
 
 	public Cuenta getUtilidadBruta() {

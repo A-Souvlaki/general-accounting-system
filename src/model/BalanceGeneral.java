@@ -1,8 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BalanceGeneral {
+public class BalanceGeneral implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Cuenta> activosCorrientes;
 
@@ -13,6 +19,8 @@ public class BalanceGeneral {
 	private ArrayList<Cuenta> pasivosNoCorrientes;
 
 	private ArrayList<Cuenta> cuentasPatrimonio;
+	
+	private Cuenta utilidad;
 
 
 	public BalanceGeneral() {
@@ -22,6 +30,8 @@ public class BalanceGeneral {
 		activosNoCorrientes = new ArrayList<Cuenta>();
 		pasivosNoCorrientes = new ArrayList<Cuenta>();
 		cuentasPatrimonio = new ArrayList<Cuenta>();
+		
+		this.utilidad = new Cuenta("Utilidad", 3605, "Utilidad", 0);
 
 	}
 
@@ -43,6 +53,14 @@ public class BalanceGeneral {
 
 	public ArrayList<Cuenta> getCuentasPatrimonio() {
 		return cuentasPatrimonio;
+	}
+	
+	public Cuenta getUtilidad() {
+		return utilidad;
+	}
+
+	public void setUtilidad(Cuenta utilidad) {
+		this.utilidad = utilidad;
 	}
 
 	public int sumaActivosCorrientes() {
@@ -87,6 +105,26 @@ public class BalanceGeneral {
 	
 	public int sumaPasivos() {
 		return sumaPasivosCorrientes() + sumaActivosNoCorrientes();
+	}
+	
+	public int sumaPatrimonio() {
+		int value = 0;
+		for (int i = 0; i < cuentasPatrimonio.size(); i++) {
+			value += cuentasPatrimonio.get(i).getValor_c();
+		}
+		return value;
+	}
+	
+	public int sumaPasivos_Patrimonio() {
+		return sumaPasivos() +(sumaPatrimonio()+utilidad.getValor_c());
+	}
+	
+	public boolean verificar() {
+		if (sumaPasivos_Patrimonio() == sumaActivos()) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	public Cuenta buscarActivosC(int codigo, int valor) {

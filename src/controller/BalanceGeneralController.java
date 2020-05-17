@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,12 +25,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Cuenta;
 
-public class BalanceGeneralController implements Initializable{
+public class BalanceGeneralController implements Initializable,Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	ObservableList<Cuenta> listA = FXCollections.observableArrayList();
 	
 	ObservableList<String> listB = FXCollections.observableArrayList();
@@ -46,10 +53,22 @@ public class BalanceGeneralController implements Initializable{
 	private Button agregarCuenta;
 	
 	@FXML
-	private Button resultado;
+	private Button balance;
 	
 	@FXML
 	private Button ir;
+	
+	@FXML
+	private Button resultado;
+	
+	@FXML
+	private Label nombre;
+	
+	@FXML
+	private Label inicio;
+	
+	@FXML 
+	private Label fin;
 	
 
 	
@@ -94,6 +113,30 @@ public class BalanceGeneralController implements Initializable{
 					root = FXMLLoader.load(getClass().getResource("/application/agregarCuenta.fxml"));
 					Scene scene = new Scene(root);
 					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+					root.getStylesheets().add("/application/application.css");
+					stage.getIcons().add(new Image("/application/horseHipodromo.jpg"));
+					stage.setScene(scene);
+					stage.centerOnScreen();
+					stage.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
+		
+		balance.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent t) {
+
+				Parent root;
+				try {
+					root = FXMLLoader.load(getClass().getResource("/application/resultados.fxml"));
+					Scene scene = new Scene(root);
+					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+					root.getStylesheets().add("/application/application.css");
+					stage.getIcons().add(new Image("/application/horseHipodromo.jpg"));
 					stage.setScene(scene);
 					stage.centerOnScreen();
 					stage.show();
@@ -111,9 +154,11 @@ public class BalanceGeneralController implements Initializable{
 
 				Parent root;
 				try {
-					root = FXMLLoader.load(getClass().getResource("/application/resultados.fxml"));
+					root = FXMLLoader.load(getClass().getResource("/application/estadoResultados.fxml"));
 					Scene scene = new Scene(root);
 					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+					root.getStylesheets().add("/application/application.css");
+					stage.getIcons().add(new Image("/application/horseHipodromo.jpg"));
 					stage.setScene(scene);
 					stage.centerOnScreen();
 					stage.show();
@@ -136,6 +181,17 @@ public class BalanceGeneralController implements Initializable{
 						root = FXMLLoader.load(getClass().getResource("/application/facturaCompra.fxml"));
 						Scene scene = new Scene(root);
 						Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+						root.getStylesheets().add("/application/application.css");
+						stage.getIcons().add(new Image("/application/horseHipodromo.jpg"));
+						stage.setScene(scene);
+						stage.centerOnScreen();
+						stage.show();
+					} else if(documentos.getValue().equals("Factura de Venta")) {
+						root = FXMLLoader.load(getClass().getResource("/application/FacturaDeVentas.fxml"));
+						Scene scene = new Scene(root);
+						Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+						root.getStylesheets().add("/application/application.css");
+						stage.getIcons().add(new Image("/application/horseHipodromo.jpg"));
 						stage.setScene(scene);
 						stage.centerOnScreen();
 						stage.show();
@@ -167,6 +223,9 @@ public class BalanceGeneralController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		init();
 		createBox();
+		nombre.setText(Main.getAc().getEmpresa());
+		inicio.setText(Main.getAc().getInicio());
+		fin.setText(Main.getAc().getFin());
 	}
 
 }

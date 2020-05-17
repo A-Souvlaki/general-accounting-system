@@ -4,19 +4,28 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
-import application.Main;
 
-public class AdministradorCuentas {
+
+
+public class AdministradorCuentas implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public final static String ACORRIENTE = "Activo Corriente";
 	public final static String ANO_CORRIENTE = "Activo No corriente";
 	public final static String PCORRIENTE = "Pasivo Corriente";
 	public final static String PNO_CORRIENTE = "Pasivo No corriente";
 	public final static String PATRIMONIO ="Patrimonio";
-	public final static String GASTO = "Gasto";
-	public final static String INGRESO = "Ingreso";
+	public final static String GASTO_O = "Gasto Operacional";
+	public final static String INGRESO_O = "Ingreso Operacional";
+	public final static String GASTO_NO = "Gasto No Operacional";
+	public final static String INGRESO_NO= "Ingreso No Operacional";
 	public final static String COSTO = "Costo de Ventas";
+	public final static String UTILIDAD = "Utilidad";
 	
 	
 	private BalanceGeneral bg;
@@ -27,6 +36,11 @@ public class AdministradorCuentas {
 	
 	private ArrayList<Cuenta> cuentas;
 	
+	private String inicio;
+	
+	private String fin;
+	
+	private String empresa;
 	
 	public AdministradorCuentas() {
 		bg = new BalanceGeneral();
@@ -34,6 +48,10 @@ public class AdministradorCuentas {
 		cuentas = new ArrayList<Cuenta>();
 		cuentasPersistentes = new ArrayList<Cuenta>();
 		readCounts();
+		
+		this.inicio = null;
+		this.fin = null;
+		this.empresa = null;
 		
 	}
 	
@@ -58,6 +76,32 @@ public class AdministradorCuentas {
 		}
 		
 	}
+	
+	
+	public String getInicio() {
+		return inicio;
+	}
+
+	public void setInicio(String inicio) {
+		this.inicio = inicio;
+	}
+
+	public String getFin() {
+		return fin;
+	}
+
+	public void setFin(String fin) {
+		this.fin = fin;
+	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+	
 
 	public BalanceGeneral getBg() {
 		return bg;
@@ -108,11 +152,61 @@ public class AdministradorCuentas {
 		}
 	}
 	
+	public void añadirPatrimonio() {
+		for (int i = 0; i < cuentas.size(); i++) {
+			if (cuentas.get(i).getEstado_m().equals(PATRIMONIO)== true) {
+				bg.getCuentasPatrimonio().add(cuentas.get(i));
+			}
+		}
+	}
+	
+	public void añadirIngresosOperacionales() {
+		for (int i = 0; i < cuentas.size(); i++) {
+			System.out.println("Entre");
+			if (cuentas.get(i).getEstado_m().equals(INGRESO_O)== true) {
+				er.getIngresosOperacionales().add(cuentas.get(i));
+			}
+		}
+	}
+	
+	public void añadirIngresosNoOperacionales() {
+		for (int i = 0; i < cuentas.size(); i++) {
+			if (cuentas.get(i).getEstado_m().equals(INGRESO_NO)== true) {
+				er.getIngresosNoOperacionales().add(cuentas.get(i));
+			}
+		}
+	}
+	
+	public void añadirGastosOperacionales() {
+		for (int i = 0; i < cuentas.size(); i++) {
+			if (cuentas.get(i).getEstado_m().equals(GASTO_O)== true) {
+				er.getGastosOperacionales().add(cuentas.get(i));
+			}
+		}
+	}
+	
+	public void añadirGastosNoOperacionales() {
+		for (int i = 0; i < cuentas.size(); i++) {
+			if (cuentas.get(i).getEstado_m().equals(GASTO_NO)== true) {
+				er.getGastosNoOperacionales().add(cuentas.get(i));
+			}
+		}
+	}
+	
 	public void actualizar() {
 		añadirActivosCorrientes();
 		añadirActivosNoCorrientes();
 		añadirPasivosCorrientes();
 		añadirPasivosNoCorrientes();
+		añadirPatrimonio();
+		añadirIngresosOperacionales();
+		añadirIngresosNoOperacionales();
+		añadirGastosOperacionales();
+		añadirGastosNoOperacionales();
+		
+
+		er.calcularUtilidadNeta();
+		
 	}
 
 	

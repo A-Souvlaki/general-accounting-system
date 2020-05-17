@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -27,15 +29,21 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import model.Cuenta;
 
-public class AgregarCuentaController implements Initializable{
+public class AgregarCuentaController implements Initializable, Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public final static String ACORRIENTE = "Activo Corriente";
 	public final static String ANO_CORRIENTE = "Activo No corriente";
 	public final static String PCORRIENTE = "Pasivo Corriente";
 	public final static String PNO_CORRIENTE = "Pasivo No corriente";
 	public final static String PATRIMONIO ="Patrimonio";
-	public final static String GASTO = "Gasto";
-	public final static String INGRESO = "Ingreso";
+	public final static String GASTO_O = "Gasto Operacional";
+	public final static String INGRESO_O = "Ingreso Operacional";
+	public final static String GASTO_NO = "Gasto No Operacional";
+	public final static String INGRESO_NO= "Ingreso No Operacional";
 	public final static String COSTO = "Costo de Ventas";
 	
 	ObservableList<String> listA = FXCollections.observableArrayList();
@@ -121,6 +129,8 @@ public class AgregarCuentaController implements Initializable{
 						root = FXMLLoader.load(getClass().getResource("/application/balance.fxml"));
 						Scene scene = new Scene(root);
 						Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+						root.getStylesheets().add("/application/application.css");
+						stage.getIcons().add(new Image("/application/horseHipodromo.jpg"));
 						stage.setScene(scene);
 						stage.centerOnScreen();
 						stage.show();
@@ -142,6 +152,8 @@ public class AgregarCuentaController implements Initializable{
 					root = FXMLLoader.load(getClass().getResource("/application/balance.fxml"));
 					Scene scene = new Scene(root);
 					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+					root.getStylesheets().add("/application/application.css");
+					stage.getIcons().add(new Image("/application/horseHipodromo.jpg"));
 					stage.setScene(scene);
 					stage.centerOnScreen();
 					stage.show();
@@ -210,7 +222,7 @@ public class AgregarCuentaController implements Initializable{
 	@SuppressWarnings("unlikely-arg-type")
 	void createBox() {
 		listA.remove(listA);
-		listA.addAll(ACORRIENTE,ANO_CORRIENTE,PCORRIENTE,PNO_CORRIENTE,PATRIMONIO,INGRESO,GASTO,COSTO);
+		listA.addAll(ACORRIENTE,ANO_CORRIENTE,PCORRIENTE,PNO_CORRIENTE,PATRIMONIO,INGRESO_O,GASTO_O,INGRESO_NO,INGRESO_O,COSTO);
 		tipos.getItems().addAll(listA);
 	}
 

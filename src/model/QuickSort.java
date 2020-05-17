@@ -1,9 +1,16 @@
 package model;
 
-public class QuickSort {
+import java.io.Serializable;
+
+public class QuickSort implements Serializable{
 
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void sort(int arr[],int low,int high) {
 		
 		if(low < high) {

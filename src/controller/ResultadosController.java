@@ -1,16 +1,32 @@
 package controller;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-public class ResultadosController implements Initializable{
+public class ResultadosController implements Initializable,Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@FXML
 	private Text activosC;
 	
@@ -31,6 +47,9 @@ public class ResultadosController implements Initializable{
 	
 	@FXML
 	private Text sumaPasivosPatrimonio;
+	
+	@FXML
+	private Button volver;
 	
 	void init() {
 		
@@ -80,6 +99,33 @@ public class ResultadosController implements Initializable{
 			sumaPasivos.setFill(Color.DARKSLATEGREY);
 		}
 		
+		if (Main.getAc().getBg().sumaPasivos_Patrimonio() != 0) {
+			sumaPasivosPatrimonio.setText("" +Main.getAc().getBg().sumaPasivos_Patrimonio());
+		}else {
+			sumaPasivosPatrimonio.setText(""+0);
+			sumaPasivosPatrimonio.setFill(Color.DARKSLATEGREY);
+		}
+		
+		volver.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent t) {
+				
+				Parent root;
+				try {
+					root = FXMLLoader.load(getClass().getResource("/application/balance.fxml"));
+					Scene scene = new Scene(root);
+					Stage stage = (Stage) ((Node) t.getSource()).getScene().getWindow();
+					root.getStylesheets().add("/application/application.css");
+					stage.getIcons().add(new Image("/application/horseHipodromo.jpg"));
+					stage.setScene(scene);
+					stage.centerOnScreen();
+					stage.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
 		
 	}
 

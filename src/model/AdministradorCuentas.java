@@ -26,7 +26,10 @@ public class AdministradorCuentas implements Serializable{
 	public final static String INGRESO_NO= "Ingreso No Operacional";
 	public final static String COSTO = "Costo de Ventas";
 	public final static String UTILIDAD = "Utilidad";
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 84f58585889527ba7475a7b3ac487f4d290d4720
 	
 	private BalanceGeneral bg;
 	
@@ -209,7 +212,11 @@ public class AdministradorCuentas implements Serializable{
 		
 	}
 
-	
+	public void añadirCostoDeVentas(String nombre,int codigo,String estado_mc,int valor) {
+		
+//		Cuenta estadoDeCosto = new Cuenta();
+		
+	}
 	
 
 }

@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import exceptions.NotFoundIngresosGastos;
+import Exceptions.NotFoundIngresosGastos;
 
 public class EstadoDeResultados implements Serializable{
 
@@ -28,6 +28,7 @@ public class EstadoDeResultados implements Serializable{
 	
 	private Cuenta VentasNetas;
 	
+<<<<<<< HEAD
 	public EstadoDeResultados() {
 		ingresosOperacionales = new ArrayList<Cuenta>();
 		ingresosNoOperacionales = new ArrayList<Cuenta>();
@@ -39,6 +40,9 @@ public class EstadoDeResultados implements Serializable{
 		this.costoDeVentas = new Cuenta("Costo de Ventas",6, "Costo de ventas", 0);
 	}
 	
+=======
+
+>>>>>>> 84f58585889527ba7475a7b3ac487f4d290d4720
 	public Cuenta getVentasNetas() {
 		return VentasNetas;
 	}
@@ -139,6 +143,7 @@ public class EstadoDeResultados implements Serializable{
 		}
 		return valor;
 	}
+<<<<<<< HEAD
 
 	public void setCostoDeVenta(Cuenta costosDeVentas){
 		
@@ -149,12 +154,35 @@ public class EstadoDeResultados implements Serializable{
 	public Cuenta utilidadBruta()  {
 		
 		Cuenta objeto = null;
+=======
+	
+	public void setCostoDeVenta(Cuenta costosDeVentas){
 		
+		setCostosDeVentas(costosDeVentas);
+>>>>>>> 84f58585889527ba7475a7b3ac487f4d290d4720
 		
+	}
+
+	public Cuenta utilidadBruta() throws NotFoundIngresosGastos {
+		
+<<<<<<< HEAD
 		int m = 0;
 		int resultados = 0;
 		int m2 = 0;
 		
+=======
+		Cuenta objeto = null;
+		
+		if((ingresosOperacionales.isEmpty() && ingresosNoOperacionales.isEmpty() && gastosOperacionales.isEmpty()) && (getCostosDeVentas() == null )) {
+			
+			throw new NotFoundIngresosGastos("");
+			
+		}else {
+		int m = 0;
+		int resultados = 0;
+		int m2 = 0;
+		
+>>>>>>> 84f58585889527ba7475a7b3ac487f4d290d4720
 		for(int i = 0; i < ingresosOperacionales.size();i++) {
 			m += ingresosOperacionales.get(i).getValor_c();
 		}
@@ -173,13 +201,22 @@ public class EstadoDeResultados implements Serializable{
 		
 		objeto = new Cuenta("Utilidad Bruta",3705,AdministradorCuentas.UTILIDAD,resultados);
 		
+<<<<<<< HEAD
 		
 		
+=======
+		}
+		
+>>>>>>> 84f58585889527ba7475a7b3ac487f4d290d4720
 		return objeto;
 		
 	}
 	
+<<<<<<< HEAD
 	public int calcularUtilidadNeta()  {
+=======
+	public void calcularUtilidadNeta() throws NotFoundIngresosGastos {
+>>>>>>> 84f58585889527ba7475a7b3ac487f4d290d4720
 		Cuenta m = null;
 		Cuenta m1 = null;
 		int resultados = 0;
@@ -193,6 +230,7 @@ public class EstadoDeResultados implements Serializable{
 		for(int i = 0; i < ingresosNoOperacionales.size();i++) {
 			ingreNop += ingresosNoOperacionales.get(i).getCodigo_c();
 		}
+<<<<<<< HEAD
 		
 		for(int j = 0; j < gastosNoOperacionales.size();j++) {
 			gastosNop += gastosNoOperacionales.get(j).getCodigo_c();
@@ -216,8 +254,21 @@ public class EstadoDeResultados implements Serializable{
 				t = true;
 			}
 		}
+=======
+		
+		for(int j = 0; j < gastosNoOperacionales.size();j++) {
+			gastosNop += gastosNoOperacionales.get(j).getCodigo_c();
+		}
+		
+		resultados = (utilidad+ingreNop)-gastosNop;
+		
+		m = new Cuenta("Utilidad Neta",3606,AdministradorCuentas.UTILIDAD,resultados);
+		
+		setUtilidadNeta(m);
+>>>>>>> 84f58585889527ba7475a7b3ac487f4d290d4720
 		
 		return t;
 	}
+	
 
 }
